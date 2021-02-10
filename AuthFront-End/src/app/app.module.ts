@@ -14,7 +14,32 @@ import { FormsModule } from '@angular/forms';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ChatComponent } from './chat/chat.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
+const MATERIAL_MODULES = [
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatCardModule
+
+]
+@NgModule({
+  exports: [MATERIAL_MODULES],
+  imports: [MATERIAL_MODULES]
+})
+export class MaterialModule { }
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +57,9 @@ import { ChatComponent } from './chat/chat.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    CommonModule
     
   ],
   providers: [authInterceptorProviders],

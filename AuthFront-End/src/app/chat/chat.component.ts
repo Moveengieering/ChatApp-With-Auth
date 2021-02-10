@@ -20,7 +20,7 @@ export class ChatComponent implements OnInit {
   public imageSrc: string;
   public formData = new FormData();
   public selectedFile: File = null;
-
+  sender : ChatMessage;
   currentRoom: ChatRoom;
   allChatRooms: ChatRoom[];
   messages: ChatMessage[];
@@ -46,7 +46,12 @@ export class ChatComponent implements OnInit {
     this.selectedFile = null;
     this.currentUser = this.tokenStorage.getUser();
     this.getAllChatRooms();
+    
+
     console.log(this.currentUser);
+   
+    
+    
     
   }
 
@@ -82,6 +87,7 @@ performUpload(message: ChatMessage) {
   connectToGeneralRoom(){
     this.currentRoom = this.allChatRooms.find(chatRoom => chatRoom.chatName === 'General');
     this.getAllMessagesOfCurrentRoom();
+   
 
   }
 
@@ -120,12 +126,21 @@ performUpload(message: ChatMessage) {
   getAllMessagesOfCurrentRoom(){
     console.log(this.currentRoom.messages);
     this.messages = this.currentRoom.messages;
+    
+   
   }
+  // getSenderName() {
+  //   this.senderName = this.messages.forEach(data => {
+  //     this.senderName = data.senderName;
+  //     console.log(this.senderName);
+  //   })
+  // }
 
   joinToSelectedRoom(roomId: string){
     this.chatService.getChatRoomById(roomId).subscribe((room) =>{
       this.currentRoom = room;
       this.getAllMessagesOfCurrentRoom();
+   
     })
   }
 
@@ -215,7 +230,7 @@ performUpload(message: ChatMessage) {
   onSelectedFile(event){
     this.selectedFile = <File> event.target.files[0];
   }
-
+  
 
 
 }
