@@ -3,20 +3,20 @@
     <span >ChatApp</span>
     <nav>
         <a mat-button  routerLink="home">Home </a>
-      
+
         <a mat-button  routerLink="admin" *ngIf="showAdminBoard">Admin Board</a>
-   
+
         <a mat-button  routerLink="mod" *ngIf="showModeratorBoard">Moderator Board</a>
-    
+
         <a mat-button  *ngIf="isLoggedIn" routerLink="user">User Chat</a>
-  
+
         <a mat-button  routerLink="register" *ngIf="!isLoggedIn" >Sign Up</a>
-     
+
         <a mat-button  routerLink="login" *ngIf="!isLoggedIn" >Login</a>
-     
+
         <a mat-button  routerLink="profile" *ngIf="isLoggedIn">{{ username }}</a>
-     
-        <a mat-button (click)="logout()">LogOut</a>   
+
+        <a mat-button *ngIf="isLoggedIn" (click)="logout()">LogOut</a>
   </nav>
   </mat-toolbar>
   <div class="container">

@@ -25,7 +25,7 @@ export class ChatComponent implements OnInit {
   allChatRooms: ChatRoom[];
   messages: ChatMessage[];
   newMessage: string = null;
-  existChatRoomWithThisName: boolean =false;
+  existChatRoomWithThisName = false;
   newChatRoom: string = null;
   urlPath = null;
   modifyMessage = null;
@@ -46,13 +46,14 @@ export class ChatComponent implements OnInit {
     this.selectedFile = null;
     this.currentUser = this.tokenStorage.getUser();
     this.getAllChatRooms();
-    
+    console.log(this.currentUser);
+
 
     console.log(this.currentUser);
-   
-    
-    
-    
+
+
+
+
   }
 
 
@@ -78,7 +79,7 @@ performUpload(message: ChatMessage) {
   // Marr Te Gjitha Room
   getAllChatRooms(){
     this.chatService.getChatRoomList().subscribe((chats) =>{
-      this.allChatRooms =chats;
+      this.allChatRooms = chats;
       this.connectToGeneralRoom();
     });
   }
@@ -87,7 +88,7 @@ performUpload(message: ChatMessage) {
   connectToGeneralRoom(){
     this.currentRoom = this.allChatRooms.find(chatRoom => chatRoom.chatName === 'General');
     this.getAllMessagesOfCurrentRoom();
-   
+
 
   }
 
@@ -126,8 +127,8 @@ performUpload(message: ChatMessage) {
   getAllMessagesOfCurrentRoom(){
     console.log(this.currentRoom.messages);
     this.messages = this.currentRoom.messages;
-    
-   
+
+
   }
   // getSenderName() {
   //   this.senderName = this.messages.forEach(data => {
@@ -140,7 +141,7 @@ performUpload(message: ChatMessage) {
     this.chatService.getChatRoomById(roomId).subscribe((room) =>{
       this.currentRoom = room;
       this.getAllMessagesOfCurrentRoom();
-   
+
     })
   }
 
@@ -230,7 +231,7 @@ performUpload(message: ChatMessage) {
   onSelectedFile(event){
     this.selectedFile = <File> event.target.files[0];
   }
-  
+
 
 
 }
