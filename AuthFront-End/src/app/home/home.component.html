@@ -1,6 +1,16 @@
-<div class="container">
-    <header class="jumbotron">
+<div class="container" style= "background-color: #3aa393;">
+    <header class="jumbotron" style="background-color: #3aa393;">
+      <h1 class="h1">👋 Welcome to ChatApp</h1>
+      <h1 *ngIf="isLoggedIn">{{name.username}}</h1>
+      <img class="jumborton" src="../../assets/Banner_chatapp.png"  style="width: 100%;  background-color: #3aa393;">
+      <a *ngIf="!isLoggedIn" (click)="openDialog()" class="button6" >Log In</a>
 
+        <h1 *ngIf="!isLoggedIn">Or</h1>
+
+    <a *ngIf="!isLoggedIn" class="button6" (click)="openReg()">Register</a>
     </header>
+
+
   </div>
 
+  <app-footer></app-footer>

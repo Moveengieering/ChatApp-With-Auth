@@ -11,6 +11,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ChatComponent } from './chat/chat.component';
@@ -22,7 +23,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import  {MatDialogModule} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from './footer/footer.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -32,12 +36,15 @@ const MATERIAL_MODULES = [
   MatListModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatCardModule
+  MatCardModule,
+  MatDialogModule,
+  MatSnackBarModule
 
 ]
 @NgModule({
   exports: [MATERIAL_MODULES],
   imports: [MATERIAL_MODULES]
+
 })
 export class MaterialModule { }
 @NgModule({
@@ -51,7 +58,8 @@ export class MaterialModule { }
     BoardModeratorComponent,
     BoardUserComponent,
     ChatComponent,
-   
+    FooterComponent
+
   ],
   imports: [
     BrowserModule,
@@ -59,8 +67,10 @@ export class MaterialModule { }
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    CommonModule
-    
+    CommonModule,
+    BrowserAnimationsModule,
+
+
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

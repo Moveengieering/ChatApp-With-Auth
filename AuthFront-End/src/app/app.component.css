@@ -1,0 +1,16 @@
+.footer {
+    position: sticky;
+    bottom: 0;  
+    width: 100%;
+    background-image: linear-gradient( 135deg, #EE9AE5 10%, #5961F9 100%);
+
+  }
+  
+ 
+  .footer {
+    font-size: 2em;
+    line-height: 5em;
+    text-align: center;
+    background-color: #1b1b1b;
+    color: #fff;
+  }
