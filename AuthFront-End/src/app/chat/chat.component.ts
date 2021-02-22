@@ -35,6 +35,7 @@ export class ChatComponent implements OnInit {
               private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
+
     this.listen();
     this.listenRooms();
     this.messages = [];
@@ -46,16 +47,19 @@ export class ChatComponent implements OnInit {
     this.selectedFile = null;
     this.currentUser = this.tokenStorage.getUser();
     this.getAllChatRooms();
-    
+
 
     console.log(this.currentUser);
-   
-    
-    
-    
+
+
+
+
   }
 
-
+autoscrollDown(){
+    const scroll = document.getElementById('chat');
+    scroll.scrollTop = scroll.scrollHeight;
+}
 
   onSelectFile(event) {
     this.selectedFile = event.target.files[event.target.files.length - 1] as File;
@@ -68,6 +72,7 @@ performUpload(message: ChatMessage) {
             this.imageSrc = res;
             this.sendMessage();
             return this.imageSrc = null;
+            this.autoscrollDown();
 
     // return this.imageSrc = null;
   }
@@ -87,7 +92,7 @@ performUpload(message: ChatMessage) {
   connectToGeneralRoom(){
     this.currentRoom = this.allChatRooms.find(chatRoom => chatRoom.chatName === 'General');
     this.getAllMessagesOfCurrentRoom();
-   
+
 
   }
 
@@ -109,8 +114,10 @@ performUpload(message: ChatMessage) {
           this.newMessage = null;// nqs kam shtuar nje msg te ri
           this.modifyMessage = null;// nqs jemi duke modifikuar nje msg
           this.selectedFile = null;// upload msg
+          this.autoscrollDown();
         });
     }
+
 
   }
 
@@ -126,8 +133,8 @@ performUpload(message: ChatMessage) {
   getAllMessagesOfCurrentRoom(){
     console.log(this.currentRoom.messages);
     this.messages = this.currentRoom.messages;
-    
-   
+    this.autoscrollDown();
+
   }
   // getSenderName() {
   //   this.senderName = this.messages.forEach(data => {
@@ -139,8 +146,10 @@ performUpload(message: ChatMessage) {
   joinToSelectedRoom(roomId: string){
     this.chatService.getChatRoomById(roomId).subscribe((room) =>{
       this.currentRoom = room;
+
       this.getAllMessagesOfCurrentRoom();
    
+
     })
   }
 
@@ -230,7 +239,7 @@ performUpload(message: ChatMessage) {
   onSelectedFile(event){
     this.selectedFile = <File> event.target.files[0];
   }
-  
+
 
 
 }
